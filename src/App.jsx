@@ -1,7 +1,9 @@
+import Loading from "./components/Loading/Loading";
+
 function App() {
   return (
     <div className="App">
-      <p>Jah</p>
+      <Loading />
     </div>
   );
 }
