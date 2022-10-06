@@ -6,16 +6,33 @@ import Dropdown from "../../components/Form/Dropdown/Dropdown";
 import Fieldset from "../../components/Form/Fieldset/Fieldset";
 import useCitiesStore from "../../store/store";
 import DateField from "../../components/Form/DateField/DateField";
+import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
 
 function FrontPage() {
-  const cities = useCitiesStore((state) => state.cities);
+  const cities = useLoaderData() ?? [];
   const times = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+  const [errorMessage, setErrorMessage] = useState("")
 
   const onSubmit = (formData) => {
+    if(formData.origin === formData.destination) return setErrorMessage("Origin and destination cannot be the same.")
 
-		console.log(formData, {
-			date: `${formData.date}T${formData.hour}:00:00.511Z`
-		});
+    setErrorMessage("");
+    fetch('https://localhost:7222/api/search/route',{
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify({...formData, date: `${formData.date}T${formData.hour < 10 ? `0${formData.hour}` : formData.hour}:00:00.511Z`}) // body data type must match "Content-Type" header
+    })
+      .then((response) => response.json())
+      .then((data) => data);
   }
 
   return (
@@ -40,7 +57,7 @@ function FrontPage() {
               },
               ...cities
             ]} name="destination" />
-            <DateField title="Date" type="date" name="date" id="transport-date" />
+            <DateField title="Departure date" type="date" name="date" id="transport-date" />
             <Dropdown options={[
               {
                 value: "none",
@@ -88,6 +105,9 @@ function FrontPage() {
             </Fieldset>
           </div>
         </div>
+        {
+          errorMessage ? <p style={{color: "red"}}>{errorMessage}</p> : ""
+        }
         <ButtonGroup>
           <Button>
             Search
