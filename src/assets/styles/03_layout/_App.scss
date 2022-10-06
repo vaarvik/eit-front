@@ -2,3 +2,8 @@
 .App {
 	height: 100%;
 }
+
+.App__content {
+	padding-top: 124px;
+	height: calc(100% - 124px); // Needed to get page content below stars
+}
