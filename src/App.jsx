@@ -1,9 +1,9 @@
-import Loading from "./components/Loading/Loading";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Loading />
+      <Outlet />
     </div>
   );
 }
