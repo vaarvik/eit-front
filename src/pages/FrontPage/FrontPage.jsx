@@ -4,20 +4,58 @@ import Button from "../../components/Form/Button/Button";
 import ButtonGroup from "../../components/Form/Button/ButtonGroup";
 import Dropdown from "../../components/Form/Dropdown/Dropdown";
 import Fieldset from "../../components/Form/Fieldset/Fieldset";
+import useCitiesStore from "../../store/store";
+import DateField from "../../components/Form/DateField/DateField";
 
 function FrontPage() {
+  const cities = useCitiesStore((state) => state.cities);
+  const times = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+
+  const onSubmit = (formData) => {
+
+		console.log(formData, {
+			date: `${formData.date}T${formData.hour}:00:00.511Z`
+		});
+  }
+
   return (
     <div className="FrontPage">
       <div className="wrapper">
-      <InputForm title="Booking" method="post" action="/login">
+      <InputForm title="Booking" method="post" action="/login" onSubmit={onSubmit}>
         <div className="grid cols-2">
           <div className="grid__item">
-            <TextField title="Username" name="username" id="login-username"/>
-            <TextField title="Password" name="password" id="login-password"/>
+            <Dropdown options={[
+                {
+                  value: "",
+                  title: "Select origin",
+                  isDisabled: true
+                },
+                ...cities
+              ]} name="origin" />
+            <Dropdown options={[
+              {
+                value: "",
+                title: "Select destination",
+                isDisabled: true
+              },
+              ...cities
+            ]} name="destination" />
+            <DateField title="Date" type="date" name="date" id="transport-date" />
+            <Dropdown options={[
+              {
+                value: "none",
+                title: "Select hour",
+                isDisabled: true
+              },
+              ...times.map(time => ({
+                value: time,
+                title: time
+              }))
+            ]} name="hour" />
           </div>
           <div className="grid__item">
             <Fieldset title="Goods">
-              <Dropdown options={[
+              <Dropdown name="type" options={[
                 {
                   value: "none",
                   title: "Select type",
@@ -51,7 +89,7 @@ function FrontPage() {
           </div>
         </div>
         <ButtonGroup>
-          <Button preventDefault={true}>
+          <Button>
             Search
           </Button>
         </ButtonGroup>
