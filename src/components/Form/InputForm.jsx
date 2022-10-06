@@ -5,8 +5,8 @@ import { Form } from "react-router-dom";
 function InputForm({title, method, action, children}) {
   return (
 	<Form className="InputForm" method={method} action={action}>
-		<h2>{title}</h2>
 		<div className="wrapper">
+			<h2>{title}</h2>
 			{children}
 		</div>
 	</Form>
