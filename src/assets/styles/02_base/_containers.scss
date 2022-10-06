@@ -22,9 +22,21 @@ html {
 }
 
 body {
+	background: linear-gradient(180deg, $black 15%, $blue 70%, $yellow 130%);
 	background-color: $black1;
 	height: 100%;
 	margin: 0;
+	position: relative;
+
+	&::before {
+		content: "";
+		background-image: url("../../images/bg-stars.png");
+		display: block;
+		height: 124px;
+		position: absolute;
+		top: 124px;
+		width: 100%;
+	}
 }
 
 main {
