@@ -4,6 +4,6 @@
 }
 
 .App__content {
-	padding-top: 124px;
-	height: calc(100% - 124px); // Needed to get page content below stars
+	padding: 124px 0;
+	height: calc(100% - 124px * 2); // Needed to get page content below stars
 }
