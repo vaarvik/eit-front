@@ -30,7 +30,7 @@ function RouteResults({routes}) {
 					<td>{dDate.toLocaleDateString()} {dDate.toLocaleTimeString()}</td>
 					<td>{aDate.toLocaleDateString()} {aDate.toLocaleTimeString()}</td>
 					<td>{route.path[0]}->{route.path[route.path.length - 1]} <div>Info<p>{route.path.map((sRoute, index) => `${sRoute}${index !== route.path.length - 1 ? " ->" : ""}`)}</p></div></td>
-					<td><Button type='link' href="/transport-route" onClick={(e) => {
+					<td><Button className={route.isFastest ? "blue" : "green"} type='link' href="/transport-route" onClick={(e) => {
 						setActiveRoute(route);
 					}}>{!route.isFastest ? "Cheap" : "Fast"}</Button></td>
 				</tr>
