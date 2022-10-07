@@ -1,10 +1,11 @@
 .Loading {
-	width: 144px;
-	height: 144px;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
 
 	img {
-		height: 144px;
+		height: 100%;
 		object-fit: contain;
-		width: 144px;
+		width: 100%;
 	}
 }

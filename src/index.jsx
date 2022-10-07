@@ -16,12 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <FrontPage />,
-        loader: () => {
-          return fetch("https://localhost:7222/api/city")
-            .then((response) => response.json())
-            .then((cities) => cities.map(city => ({title: city.name, value: city.name})))
-        },
+        element: <FrontPage />
       },
       {
         path: "/transport-route",

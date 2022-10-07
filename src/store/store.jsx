@@ -24,7 +24,13 @@ const citiesOriginals = [
 ]
 
 const useCitiesStore = create((set) => ({
-  cities: sortByProp(citiesOriginals, "title"),
+  cities: setTimeout(() => sortByProp(citiesOriginals, "title"), 1000),
+  activeRoute: null,
+  setActiveRoute: (activeRoute) => {
+    set(() => ({
+      activeRoute
+    }))
+  },
   updateFilter: (searchText) => {
     const searchTextLC = searchText.toLowerCase();
     set(() => ({
