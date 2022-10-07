@@ -6,7 +6,6 @@ import ButtonGroup from "../../components/Form/Button/ButtonGroup";
 import Dropdown from "../../components/Form/Dropdown/Dropdown";
 import Fieldset from "../../components/Form/Fieldset/Fieldset";
 import DateField from "../../components/Form/DateField/DateField";
-import { useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RouteResults from "../../components/RouteResults/RouteResults";
 

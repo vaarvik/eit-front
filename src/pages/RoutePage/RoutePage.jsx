@@ -27,7 +27,7 @@ function RoutePage() {
         <h5>Arrive By</h5>
         <p>{aDate.toLocaleDateString()} {aDate.toLocaleTimeString()}</p>
         <h5>Transportation Route</h5>
-        <p>{activeRoute?.path.map((sRoute, index) => `${sRoute}${index !== activeRoute?.path.length - 1 ? " -" : ""}`)}</p>
+        <p>{activeRoute?.path.map((sRoute, index) => `${sRoute}${index !== activeRoute?.path.length - 1 ? " ->" : ""}`)}</p>
 
         <ButtonGroup>
           <Button type="link" href="/">

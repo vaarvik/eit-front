@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './assets/styles/style.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider, useLoaderData } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import FrontPage from './pages/FrontPage/FrontPage';
 import RoutePage from './pages/RoutePage/RoutePage';
