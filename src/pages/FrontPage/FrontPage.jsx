@@ -18,6 +18,9 @@ function FrontPage() {
     .then((response) => response.json())
     .then((cities) => {
       setCities(cities.map(city => ({title: city.name, value: city.name})))
+    }).catch((error) => {
+      console.error(error);
+      setCities([]);
     })
   }, [])
 
