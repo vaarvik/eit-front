@@ -14,13 +14,14 @@ function FrontPage() {
   const [cities, setCities] = useState([])
 
   useEffect(() => {
-    fetch("https://localhost:7222/api/city")
+    fetch("https://wa-eit-dk2.azurewebsites.net/api/city")
     .then((response) => response.json())
     .then((cities) => {
+      console.log(cities);
       setCities(cities.map(city => ({title: city.name, value: city.name})))
     }).catch((error) => {
       console.error(error);
-      setCities([]);
+      setCities(null);
     })
   }, [])
 
@@ -34,7 +35,7 @@ function FrontPage() {
 
     setFetchingRoutes(true);
     setErrorMessage("");
-    fetch('https://localhost:7222/api/search/route',{
+    fetch('https://wa-eit-dk2.azurewebsites.net/api/search/route',{
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
