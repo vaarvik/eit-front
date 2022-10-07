@@ -6,9 +6,15 @@ $header-height: 124px;
 	background-color: $black;
 	box-sizing: border-box;
 	display: flex;
+	justify-content: space-between;
 	height: $header-height;
 	padding: 16px;
 	width: 100%;
+
+	a {
+		flex-shrink: 1;
+		flex-grow: 0;
+	}
 
 	.Header__logo {
 		height: 100%;
@@ -17,5 +23,9 @@ $header-height: 124px;
 		   height: 100%;
 		   object-fit: contain;
 	   }
+	}
+
+	.Header__logout {
+		margin: auto 0;
 	}
 }
