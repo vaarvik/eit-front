@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./TextField.scss";
 
-function TextField({title, name, id, type = "input", min=0, max=100}){
+function TextField({title, onChange=() => null, name, id, type = "input", min=0, max=100}){
     const [hasValue, setHasValue] = useState(false);
     const [value, setValue] = useState("")
     const onChangeBase = (e) => {
@@ -14,6 +14,7 @@ function TextField({title, name, id, type = "input", min=0, max=100}){
 
         if(e.target.value && !hasValue) setHasValue(true)
         else if(hasValue) setHasValue(false);
+        onChange(e);
     }
 
     let numberProps = {};
