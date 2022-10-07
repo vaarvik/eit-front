@@ -1,11 +1,11 @@
 import React from 'react'
-import { redirect } from 'react-router-dom';
 import useCitiesStore from '../../store/store';
 import Button from '../Form/Button/Button';
 import "./RouteResults.scss"
 
 function RouteResults({routes}) {
 	const setActiveRoute = useCitiesStore(state => state.setActiveRoute);
+
   return (
 	<section className='RouteResults'>
 		<h2>Available Routes</h2>
@@ -20,18 +20,21 @@ function RouteResults({routes}) {
 				</tr>
 			</thead>
 			<tbody>
-			{routes.map((route, index) => (
+			{routes.map((route, index) => {
+				const dDate = new Date(route.departureDate);
+				const aDate = new Date(route.arrivalDate);
+				return (
 				<tr key={index}>
-					<td>{route.price}</td>
-					<td>{route.time}</td>
-					<td>{route.sentBy}</td>
-					<td>{route.arriveBy}</td>
-					<td>{route.routes[0]}-{route.routes[route.routes.length - 1]} <div>Info<p>{route.routes.map((sRoute, index) => `${sRoute}${index !== route.routes.length - 1 ? " -" : ""}`)}</p></div></td>
+					<td>{route.totalPrice}$</td>
+					<td>{route.totalTime} hours</td>
+					<td>{dDate.toLocaleDateString()} {dDate.toLocaleTimeString()}</td>
+					<td>{aDate.toLocaleDateString()} {aDate.toLocaleTimeString()}</td>
+					<td>{route.path[0]}-{route.path[route.path.length - 1]} <div>Info<p>{route.path.map((sRoute, index) => `${sRoute}${index !== route.path.length - 1 ? " -" : ""}`)}</p></div></td>
 					<td><Button type='link' href="/transport-route" onClick={(e) => {
 						setActiveRoute(route);
-					}}>{index < 1 ? "Cheap" : "Fast"}</Button></td>
+					}}>{!route.isFastest ? "Cheap" : "Fast"}</Button></td>
 				</tr>
-			))}
+			)})}
 			</tbody>
 		</table>
 	</section>

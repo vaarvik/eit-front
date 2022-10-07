@@ -17,7 +17,6 @@ function FrontPage() {
     fetch("https://wa-eit-dk2.azurewebsites.net/api/city")
     .then((response) => response.json())
     .then((cities) => {
-      console.log(cities);
       setCities(cities.map(city => ({title: city.name, value: city.name})))
     }).catch((error) => {
       console.error(error);
@@ -50,21 +49,8 @@ function FrontPage() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setRouteResults([{ //replace with real data
-          price: 1000,
-          time: 90,
-          sentBy: new Date().toISOString(),
-          arriveBy: new Date().toISOString(),
-          routes: ["St. Helena", "Tubby", "Wadai"]
-        },
-        {
-          price: 200,
-          time: 120,
-          sentBy: new Date().toISOString(),
-          arriveBy: new Date().toISOString(),
-          routes: ["St. Helena", "Tubby", "Wadai"]
-        }])
-        setTimeout(() => setFetchingRoutes(false), 2000); //big delay to show the boat
+        setRouteResults(data);
+        setFetchingRoutes(false); //big delay to show the boat
       });
   }
 
@@ -76,7 +62,7 @@ function FrontPage() {
     <div className="FrontPage">
     <div className="wrapper wide">
       {
-        routeResults?.length ? (fetchingRoutes ? <div className="wrapper"><Loading /></div>  : <RouteResults routes={ routeResults } />) : null
+        routeResults?.length && !fetchingRoutes ? <RouteResults routes={ routeResults } /> : ( fetchingRoutes ? <div className="wrapper"><Loading /></div> : null)
       }
     </div>
       <div className="wrapper">
