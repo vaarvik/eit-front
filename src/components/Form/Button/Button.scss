@@ -14,6 +14,7 @@
 	position: relative;
 	text-transform: uppercase;
 	transition: .2s;
+	max-width: 200px;
 	word-break: keep-all;
     @include cleanMargins();
 
@@ -28,4 +29,8 @@
 	justify-content: flex-end;
     margin: 24px 0;
     @include cleanMargins();
+
+	.Button {
+		margin: 0 8px;
+	}
 }

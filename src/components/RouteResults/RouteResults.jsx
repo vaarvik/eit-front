@@ -33,7 +33,7 @@ function RouteResults({routes}) {
 				</tr>
 			))}
 			</tbody>
-			</table>
+		</table>
 	</section>
   )
 }

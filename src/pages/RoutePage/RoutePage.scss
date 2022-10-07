@@ -1,0 +1,45 @@
+@import "/src/assets/styles/01_global/colors";
+
+.RoutePage {
+	background-color: $grey3;
+	border-radius: 4px;
+	color: $black;
+	padding: 40px;
+
+	.RoutePage__info {
+		color: $red;
+		cursor: pointer;
+		font-size: 12px;
+		position: relative;
+
+		&:hover {
+			p {
+				display: block;
+			}
+		}
+
+		p {
+			background-color: $black2;
+			color: $white;
+			display: none;
+			padding: 16px 24px;
+			position: absolute;
+			left: 0;
+			z-index: 1;
+		}
+	}
+
+	table {
+		border-collapse: separate;
+		border-spacing: 16px;
+
+	}
+
+	table {
+		border-top: 2px solid;
+	}
+
+	th, td {
+		border-spacing: 16px;
+	}
+}
